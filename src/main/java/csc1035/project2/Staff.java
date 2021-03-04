@@ -21,6 +21,8 @@ public class Staff {
         this.last_name = last_name;
     }
 
+    public Staff(){}
+
     public String getId() {
         return id;
     }

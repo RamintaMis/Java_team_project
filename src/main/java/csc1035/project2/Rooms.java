@@ -25,6 +25,8 @@ public class Rooms {
         this.social_distancing_capacity = social_distancing_capacity;
     }
 
+    public Rooms(){}
+
     public String getRoom_number() {
         return room_number;
     }

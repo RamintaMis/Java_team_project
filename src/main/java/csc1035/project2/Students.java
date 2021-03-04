@@ -21,6 +21,8 @@ public class Students {
         this.last_name = last_name;
     }
 
+    public Students(){}
+
     public int getId() {
         return id;
     }

@@ -15,9 +15,10 @@ public class InitialisingStudents {
             try {
                 session = HibernateUtil.getSessionFactory().openSession();
                 session.beginTransaction();
-                Students s = new Students(Integer.parseInt(data.get(i).get(0).toString()),
-                        data.get(i).get(1).toString(),
-                        data.get(i).get(2).toString());
+                Students s = new Students();
+                s.setId(Integer.parseInt(data.get(i).get(0).toString()));
+                s.setFirst_name(data.get(i).get(1).toString());
+                s.setLast_name(data.get(i).get(2).toString());
                 session.saveOrUpdate(s);
                 session.getTransaction().commit();
                 }

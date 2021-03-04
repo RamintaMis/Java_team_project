@@ -15,10 +15,11 @@ public class InitialisingModules {
             try {
                 session = HibernateUtil.getSessionFactory().openSession();
                 session.beginTransaction();
-                Modules m = new Modules(data.get(i).get(0).toString(),
-                        data.get(i).get(1).toString(),
-                        Integer.parseInt(data.get(i).get(2).toString()),
-                        Integer.parseInt(data.get(i).get(3).toString()));
+                Modules m = new Modules();
+                m.setId(data.get(i).get(0).toString());
+                m.setName(data.get(i).get(1).toString());
+                m.setCredits(Integer.parseInt(data.get(i).get(2).toString()));
+                m.setWeeks(Integer.parseInt(data.get(i).get(3).toString()));
                 session.saveOrUpdate(m);
                 session.getTransaction().commit();
                 }

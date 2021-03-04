@@ -15,9 +15,10 @@ public class InitialisingStaff {
             try {
                 session = HibernateUtil.getSessionFactory().openSession();
                 session.beginTransaction();
-                Staff s = new Staff(data.get(i).get(0).toString(),
-                        data.get(i).get(1).toString(),
-                        data.get(i).get(2).toString());
+                Staff s = new Staff();
+                s.setId(data.get(i).get(0).toString());
+                s.setFirst_name(data.get(i).get(1).toString());
+                s.setLast_name(data.get(i).get(2).toString());
                 session.saveOrUpdate(s);
                 session.getTransaction().commit();
                 }

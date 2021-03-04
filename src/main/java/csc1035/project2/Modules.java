@@ -24,6 +24,7 @@ public class Modules {
         this.credits = credits;
         this.weeks = weeks;
     }
+    public Modules(){}
 
     public String getId() {
         return id;

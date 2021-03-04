@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Rooms {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private String room_number;
 
@@ -25,8 +24,6 @@ public class Rooms {
         this.max_capacity = max_capacity;
         this.social_distancing_capacity = social_distancing_capacity;
     }
-
-    public Rooms(){}
 
     public String getRoom_number() {
         return room_number;

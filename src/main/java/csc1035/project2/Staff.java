@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Staff {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private String id;
 
@@ -21,8 +20,6 @@ public class Staff {
         this.first_name = first_name;
         this.last_name = last_name;
     }
-
-    public Staff(){}
 
     public String getId() {
         return id;

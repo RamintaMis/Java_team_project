@@ -25,6 +25,8 @@ public class Modules {
         this.weeks = weeks;
     }
 
+    public Modules() {}
+
     public String getId() {
         return id;
     }

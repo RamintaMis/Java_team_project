@@ -15,10 +15,11 @@ public class InitialisingRooms {
             try {
                 session = HibernateUtil.getSessionFactory().openSession();
                 session.beginTransaction();
-                Rooms r = new Rooms(data.get(i).get(0).toString(),
-                        data.get(i).get(1).toString(),
-                        Integer.parseInt(data.get(i).get(2).toString()),
-                        Integer.parseInt(data.get(i).get(3).toString()));
+                Rooms r = new Rooms();
+                r.setRoom_number(data.get(i).get(0).toString());
+                r.setType(data.get(i).get(1).toString());
+                r.setMax_capacity(Integer.parseInt(data.get(i).get(2).toString()));
+                r.setSocial_distancing_capacity(Integer.parseInt(data.get(i).get(3).toString()));
                 session.saveOrUpdate(r);
                 session.getTransaction().commit();
                 }

@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:58213/t1035t17</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:53051/t1035t17</property>
         <property name="hibernate.connection.username">t1035t17</property>
         <property name="hibernate.connection.password">KingFen^4Aid</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>

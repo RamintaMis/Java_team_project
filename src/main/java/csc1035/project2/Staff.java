@@ -22,6 +22,8 @@ public class Staff {
     }
     public Staff(){}
 
+    public Staff(){}
+
     public String getId() {
         return id;
     }

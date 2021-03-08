@@ -18,8 +18,7 @@
         <mapping class="csc1035.project2.Staff" />
         <mapping class="csc1035.project2.Rooms" />
         <mapping class="csc1035.project2.Modules" />
-<!--        <mapping class="csc1035.project2.Staff" />-->
-<!--        <mapping class="csc1035.project2.Booking" />-->
+        <mapping class="csc1035.project2.Booking" />
 
 
 

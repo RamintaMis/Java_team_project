@@ -7,7 +7,18 @@ public class TestRoomBookSys {
 
     public static void main(String[] args) {
         RoomBookingSys r = new RoomBookingSys();
-       // List<Rooms> temp = r.listOfRooms();
-        r.reserveRoom("NUC1632260", "3.473","BKR9132", 14, LocalDate.of(2021, 3, 8), true);
+        //System.out.println(r.bookings);
+        // List<Rooms> temp = r.listOfRooms();
+       // r.reserveRoom("NUC2307334", "4.178","YMG4261", 15, LocalDate.of(2021, 3, 9), true);
+        //r.cancelRoomReservation("NUC2307334", "4.178","YMG4261", 15, LocalDate.of(2021, 3, 9));
+        //r.findRoom(LocalDate.of(2021, 3, 12),10,2,34);
+       // r.timetableForRoom("4.178");
+       /* for (Booking b: r.listOfBookings()){
+            System.out.println(b);
+        }*/
+
+
+
+
     }
 }

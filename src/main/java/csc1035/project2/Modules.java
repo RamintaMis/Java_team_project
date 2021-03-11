@@ -26,8 +26,6 @@ public class Modules {
     }
     public Modules(){}
 
-    public Modules() {}
-
     public String getId() {
         return id;
     }

@@ -26,8 +26,6 @@ public class Rooms {
     }
     public Rooms(){}
 
-    public Rooms(){}
-
     public String getRoom_number() {
         return room_number;
     }

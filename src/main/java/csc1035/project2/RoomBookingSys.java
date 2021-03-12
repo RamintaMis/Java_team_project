@@ -2,6 +2,7 @@ package csc1035.project2;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.engine.query.spi.sql.NativeSQLQueryReturn;
 
 
 import java.time.LocalDate;
@@ -53,24 +54,27 @@ public class RoomBookingSys {
         }
     }
 
-  /*  public void cancelRoomReservation(String staff_id, String room_no, String module_id,
+    public void cancelRoomReservation(String staff_id, String room_no, String module_id,
                                       int time, LocalDate date){
 
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-
-            //something
-
-
+            session.createQuery("DELETE FROM booking WHERE " +
+                    "staff_id = :sid AND room_number = :rno AND module_id = :mid " +
+                    "AND time = :t AND date = :dat")
+                    .setParameter("sid", staff_id).setParameter("rno", room_no)
+                    .setParameter("mid", module_id).setParameter("t", time)
+                    .setParameter("dat", date).executeUpdate();
             session.getTransaction().commit();
         }catch(HibernateException e){
             if (session!=null) session.getTransaction().rollback();
+            System.out.println("Rollback");
             e.printStackTrace();
         }finally {
             session.close();
         }
-    }*/
+    }
 
     public List<Booking> listOfBookings(){
         session = HibernateUtil.getSessionFactory().openSession();
@@ -82,15 +86,36 @@ public class RoomBookingSys {
     }
 
 
-   /* public void findRoom(LocalDate date, int time, int duration, int people_no){
-        session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        List<Rooms> availableRooms = null;
-        for(Booking b:listOfBookings()){
+// SQL should be correct, but the problem is returning the results
 
+// Since this query uses two tables, defining a list using "List<Booking> availableRooms"
+// or "List<Rooms> availableRooms" doesn't work as it defines the list for only one table
+
+/*    public void findRoom(LocalDate date, int time, int duration, int people_no){
+        try{
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            List availableRooms = session.createNativeQuery("SELECT booking.time, booking.date, " +
+                    "rooms.room_number, rooms.type, rooms.max_capacity," +
+                    "rooms.social_distancing_capacity FROM booking, rooms " +
+                    "WHERE booking.room_number = rooms.room_number " +
+                    "AND rooms.max_capacity >= :people_no " +
+                    "AND booking.time != :time AND booking.date = :date")
+                    .setParameter("people_no", people_no)
+                    .setParameter("time", time).setParameter("date", date).list();
+            for (Object i : availableRooms){
+            }
+        }
+        catch(HibernateException e) {
+            if (session != null) session.getTransaction().rollback();
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
         }
 
     }*/
+
 
     public void timetableForRoom(String room_no){
 

@@ -2,11 +2,11 @@ package csc1035.project2;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.engine.query.spi.sql.NativeSQLQueryReturn;
 
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -85,36 +85,54 @@ public class RoomBookingSys {
         return bookingList;
     }
 
-
-// SQL should be correct, but the problem is returning the results
-
-// Since this query uses two tables, defining a list using "List<Booking> availableRooms"
-// or "List<Rooms> availableRooms" doesn't work as it defines the list for only one table
-
-/*    public void findRoom(LocalDate date, int time, int duration, int people_no){
-        try{
+    public void findRoom(LocalDate date, int time, int duration, int people_no) {
+        try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            List availableRooms = session.createNativeQuery("SELECT booking.time, booking.date, " +
-                    "rooms.room_number, rooms.type, rooms.max_capacity," +
-                    "rooms.social_distancing_capacity FROM booking, rooms " +
-                    "WHERE booking.room_number = rooms.room_number " +
-                    "AND rooms.max_capacity >= :people_no " +
-                    "AND booking.time != :time AND booking.date = :date")
-                    .setParameter("people_no", people_no)
-                    .setParameter("time", time).setParameter("date", date).list();
-            for (Object i : availableRooms){
+            List<Booking> booking_query = session.createQuery("FROM booking " +
+                    "WHERE date = :date")
+                    .setParameter("date", date).list();
+            List<Rooms> room_query = session.createQuery("FROM rooms " +
+                    "WHERE max_capacity >= :people_no ")
+                    .setParameter("people_no", people_no).list();
+            List<Rooms> temp_rooms = new ArrayList<>();
+            System.out.println("\nFinding available rooms... \n");
+            for (Rooms i : room_query) {
+                for (Booking j : booking_query) {
+                    if (Float.parseFloat(j.getRoom_number()) == Float.parseFloat(i.getRoom_number())) {
+                        if (j.getTime() > time - 1 && j.getTime() < time + duration - 1){
+                            System.out.println("Room number " + i.getRoom_number() +
+                                    " is unavailable between " +
+                                    String.valueOf(j.getTime()) + ":00 and " +
+                                    String.valueOf(j.getTime()+duration) + ":00" + "\n");
+                        }
+                        else {
+                            System.out.println("Available room number: " + i.getRoom_number());
+                            System.out.println("Room type: " + i.getType());
+                            System.out.println("Max capacity: " + i.getMax_capacity());
+                            System.out.println("Social distancing capacity: " + i.getSocial_distancing_capacity() + "\n");
+                        }
+                        temp_rooms.add(i);
+                    }
+                }
+            }
+            for (Rooms i : temp_rooms){
+                room_query.remove(i);
+            }
+            for (Rooms i : room_query){
+                System.out.println("Available room number: " + i.getRoom_number());
+                System.out.println("Room type: " + i.getType());
+                System.out.println("Max capacity: " + i.getMax_capacity());
+                System.out.println("Social distancing capacity: " + i.getSocial_distancing_capacity() + "\n");
+            }
+            session.getTransaction().commit();
+            } catch(HibernateException e){
+                if (session != null) session.getTransaction().rollback();
+                e.printStackTrace();
+            } finally{
+                session.close();
             }
         }
-        catch(HibernateException e) {
-            if (session != null) session.getTransaction().rollback();
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-
-    }*/
 
 
     public void timetableForRoom(String room_no){

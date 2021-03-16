@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:49227/t1035t17</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:55749/t1035t17</property>
         <property name="hibernate.connection.username">t1035t17</property>
         <property name="hibernate.connection.password">KingFen^4Aid</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -20,6 +20,8 @@
         <mapping class="csc1035.project2.Modules" />
         <mapping class="csc1035.project2.Booking" />
         <mapping class="csc1035.project2.ModuleRequirements" />
+        <mapping class="csc1035.project2.Takes" />
+        <mapping class="csc1035.project2.Teaches" />
 
 
 

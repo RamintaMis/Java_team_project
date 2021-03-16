@@ -14,5 +14,7 @@ public class TestRoomBookSys {
         //r.findRoom(LocalDate.of(2021, 3, 12),10,2,34);
        // r.timetableForRoom("4.178");
        // r.reserveRoom("NUC2307334", "2.019","YMG4261", 10, LocalDate.of(2021, 4, 9), true);
+       // TimetablingSys t = new TimetablingSys();
+        //t.hey();
     }
 }

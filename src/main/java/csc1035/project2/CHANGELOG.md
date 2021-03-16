@@ -37,3 +37,14 @@
   testing directory
 * Removed duplicate no-arg constructors in
   Entity classes
+  
+
+[Version 4 - 16/03/2021 - Raminta Misiunaite]
+* Added takes.csv, teaches.csv with assigned data
+* Created InitialisingTakes, InitialisingTeaches to transfer data to DB
+* Created Takes, Teaches classes
+* Created TakesCompositeKey, TeachesCompositeKey for their primary keys respectively 
+* Started Timetabling System
+  * created a template for listOfStudentsByModule method
+  * created listOfStaffByModule method
+  * created listOfModuleReq method

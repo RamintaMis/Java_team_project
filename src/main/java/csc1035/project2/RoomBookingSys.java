@@ -3,7 +3,6 @@ package csc1035.project2;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -46,6 +45,9 @@ public class RoomBookingSys {
             session.save(book);
             session.getTransaction().commit();
             bookings.add(book);
+            if (bookings.contains(book)){
+                System.out.println("Booking confirmed");
+            }
         }catch(HibernateException e){
             if (session!=null) session.getTransaction().rollback();
             e.printStackTrace();
@@ -150,7 +152,7 @@ public class RoomBookingSys {
         }
     }
 
-    void updateRoomDetails(String room_number, String new_room_no, String new_type, int new_cap, int new_soc_cap){
+    public void updateRoomDetails(String room_number, String new_room_no, String new_type, int new_cap, int new_soc_cap){
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -168,4 +170,5 @@ public class RoomBookingSys {
             session.close();
         }
     }
+
 }

@@ -13,12 +13,6 @@ public class TestRoomBookSys {
         //r.cancelRoomReservation("NUC2307334", "4.178","YMG4261", 15, LocalDate.of(2021, 3, 9));
         //r.findRoom(LocalDate.of(2021, 3, 12),10,2,34);
        // r.timetableForRoom("4.178");
-       /* for (Booking b: r.listOfBookings()){
-            System.out.println(b);
-        }*/
-
-
-
-
+       // r.reserveRoom("NUC2307334", "2.019","YMG4261", 10, LocalDate.of(2021, 4, 9), true);
     }
 }

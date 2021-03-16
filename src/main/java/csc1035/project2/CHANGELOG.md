@@ -25,4 +25,5 @@
   * started creating findRoom method - not finished yet 
   * added timetableForRoom method 
   * added updateRoomDetails method 
+  * added booking confirmation
 * Created class for testing RoomBookingSys, will delete/replace later

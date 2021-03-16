@@ -27,3 +27,13 @@
   * added updateRoomDetails method 
   * added booking confirmation
 * Created class for testing RoomBookingSys, will delete/replace later
+
+[Version 3 - 15/03/2021 - Pawel Gertner]
+* Updated RoomBookingSys
+  * Completed cancelRoomReservation method
+  * Completed findRoom method
+* Added ModuleRequirements class
+* Added InitialisingModuleRequirements class for 
+  testing directory
+* Removed duplicate no-arg constructors in
+  Entity classes

@@ -11,13 +11,12 @@ import java.util.List;
 
 public class RoomBookingSys {
 
-    Session session;
-    List<Booking> bookings= new ArrayList();
-
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    ArrayList<Booking> bookings = new ArrayList<>();
     public List<Rooms> listOfRooms(){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        List<Rooms> roomsList = null;
+        List roomsList = null;
         roomsList = session.createQuery("FROM rooms").list();
         session.getTransaction().commit();
         return roomsList;
@@ -25,8 +24,9 @@ public class RoomBookingSys {
 
     public void reserveRoom(String staff_id, String room_no, String module_id,
                             int time, LocalDate date, boolean socially_distanced){
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try{
-            session = HibernateUtil.getSessionFactory().openSession();
+
             session.beginTransaction();
             Booking book = new Booking();
             book.setStaff_id(staff_id);
@@ -52,8 +52,9 @@ public class RoomBookingSys {
     public void cancelRoomReservation(String staff_id, String room_no, String module_id,
                                       int time, LocalDate date){
 
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try{
-            session = HibernateUtil.getSessionFactory().openSession();
+
             session.beginTransaction();
             session.createQuery("DELETE FROM booking WHERE " +
                     "staff_id = :sid AND room_number = :rno AND module_id = :mid " +
@@ -62,6 +63,7 @@ public class RoomBookingSys {
                     .setParameter("mid", module_id).setParameter("t", time)
                     .setParameter("dat", date).executeUpdate();
             session.getTransaction().commit();
+
         }catch(HibernateException e){
             if (session!=null) session.getTransaction().rollback();
             System.out.println("Rollback");
@@ -72,7 +74,7 @@ public class RoomBookingSys {
     }
 
     public List<Booking> listOfBookings(){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Booking> bookingList = null;
         bookingList = session.createQuery("FROM booking").list();
@@ -81,8 +83,9 @@ public class RoomBookingSys {
     }
 
     public void findRoom(LocalDate date, int time, int duration, int people_no) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             List<Booking> booking_query = session.createQuery("FROM booking " +
                     "WHERE date = :date")
@@ -92,9 +95,13 @@ public class RoomBookingSys {
                     .setParameter("people_no", people_no).list();
             List<Rooms> temp_rooms = new ArrayList<>();
             System.out.println("\nFinding available rooms... \n");
+
             for (Rooms i : room_query) {
+
                 for (Booking j : booking_query) {
+
                     if (Float.parseFloat(j.getRoom_number()) == Float.parseFloat(i.getRoom_number())) {
+
                         if (j.getTime() > time - 1 && j.getTime() < time + duration - 1){
                             System.out.println("Room number " + i.getRoom_number() +
                                     " is unavailable between " +
@@ -105,7 +112,8 @@ public class RoomBookingSys {
                             System.out.println("Available room number: " + i.getRoom_number());
                             System.out.println("Room type: " + i.getType());
                             System.out.println("Max capacity: " + i.getMax_capacity());
-                            System.out.println("Social distancing capacity: " + i.getSocial_distancing_capacity() + "\n");
+                            System.out.println("Social distancing capacity: " +
+                                    i.getSocial_distancing_capacity() + "\n");
                         }
                         temp_rooms.add(i);
                     }
@@ -155,9 +163,12 @@ public class RoomBookingSys {
                 .setParameter("module_id", module_id).setParameter("staff_id", staff_id).list();
         return confirmation;
     }
-    public void updateRoomDetails(String room_number, String new_room_no, String new_type, int new_cap, int new_soc_cap){
+    public void updateRoomDetails(String room_number, String new_room_no, String new_type,
+                                  int new_cap, int new_soc_cap){
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try{
-            session = HibernateUtil.getSessionFactory().openSession();
+
             session.beginTransaction();
             Rooms r = (session.get(Rooms.class,room_number));
             if (new_room_no != null){

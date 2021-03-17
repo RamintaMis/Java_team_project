@@ -1,6 +1,8 @@
 package csc1035.project2;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "modules")
 public class Modules {
@@ -17,6 +19,9 @@ public class Modules {
 
     @Column
     private int weeks;
+
+    @ManyToMany(mappedBy = "modules")
+    private Set<Students> students = new HashSet<>();
 
     public Modules(String id, String name, int credits, int weeks) {
         this.id = id;

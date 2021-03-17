@@ -1,6 +1,8 @@
 package csc1035.project2;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name="students")
 public class Students {

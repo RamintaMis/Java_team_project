@@ -10,16 +10,15 @@ public class TimetablingSys {
 
     Session session;
 
-   /* public List<Students> listOfStudentsByModule(String mid){
+    public List<Students> listOfStudentsByModule(String mid){
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Students> studentList = null;
-        studentList = session.createQuery("SELECT sid FROM takes").list();
-
-
+        studentList = session.createQuery("SELECT sid FROM takes" +
+                "WHERE mid = :mid").setParameter("mid", mid).list();
         session.getTransaction().commit();
         return studentList;
-    }*/
+    }
 
     public List<Staff> listOfStaffByModule(String module_id){
         session = HibernateUtil.getSessionFactory().openSession();

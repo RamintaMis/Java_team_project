@@ -19,13 +19,6 @@ public class RoomBookingSys {
         session.beginTransaction();
         List<Rooms> roomsList = null;
         roomsList = session.createQuery("FROM rooms").list();
-        for (Iterator<Rooms> iterator = roomsList.iterator(); iterator.hasNext();){
-            Rooms room = iterator.next();
-            System.out.print("Room no.: " + room.getRoom_number()+"\n");
-            System.out.print("Type: " + room.getType()+"\n");
-            System.out.println("Max capacity: " + room.getMax_capacity());
-            System.out.println("Max social dist. capacity: "+room.getSocial_distancing_capacity()+"\n");
-        }
         session.getTransaction().commit();
         return roomsList;
     }
@@ -146,21 +139,39 @@ public class RoomBookingSys {
                 bookingByRoom.add(b);
             }
         }
-        System.out.println("Timetable for room number "+room_no+":");
+        System.out.println("\nTimetable for room number "+room_no+":");
         for(Booking b:bookingByRoom){
-            System.out.println(b.getDate() + " "+b.getTime()+" "+b.getModule_id()+" "+b.getStaff_id());
+            System.out.println("\nDate: "+b.getDate()+"\nTime: "+b.getTime()+"\nModule id: "
+                    +b.getModule_id()+"\nStaff id: "+b.getStaff_id()+"\n");
         }
     }
 
+    public List<Booking> roomConfirmation(String room_number, String staff_id, String module_id){
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        List<Booking> confirmation = session.createQuery(
+                "FROM booking WHERE room_number = :room_number AND " +
+                "staff_id = :staff_id AND module_id = :module_id").setParameter("room_number", room_number)
+                .setParameter("module_id", module_id).setParameter("staff_id", staff_id).list();
+        return confirmation;
+    }
     public void updateRoomDetails(String room_number, String new_room_no, String new_type, int new_cap, int new_soc_cap){
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             Rooms r = (session.get(Rooms.class,room_number));
-            r.setRoom_number(new_room_no);
-            r.setType(new_type);
-            r.setMax_capacity(new_cap);
-            r.setSocial_distancing_capacity(new_soc_cap);
+            if (new_room_no != null){
+                r.setRoom_number(new_room_no);
+            }
+            if (new_type != null){
+                r.setType(new_type);
+            }
+            if (new_cap != 0){
+                r.setMax_capacity(new_cap);
+            }
+            if (new_soc_cap != 0){
+                r.setSocial_distancing_capacity(new_soc_cap);
+            }
             session.update(r);
             session.getTransaction().commit();
         }catch(HibernateException e){

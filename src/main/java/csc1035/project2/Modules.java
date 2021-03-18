@@ -1,8 +1,6 @@
 package csc1035.project2;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * The entity declaration for the class 'Modules'. It contains the String module ID, the
@@ -26,9 +24,6 @@ public class Modules {
 
     @Column
     private int weeks;
-
-    @ManyToMany(mappedBy = "modules")
-    private Set<Students> students = new HashSet<>();
 
     public Modules(String id, String name, int credits, int weeks) {
         this.id = id;

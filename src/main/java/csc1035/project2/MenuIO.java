@@ -1,6 +1,5 @@
 package csc1035.project2;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 import java.time.LocalDate;
@@ -182,11 +181,12 @@ public class MenuIO {
 
                     List<Booking> con_list = r.roomConfirmation(con_room_num, con_staff_id, con_mod_id);
                     for (Booking i : con_list){
-                        i.getStaff_id();
-                        i.getRoom_number();
-                        i.getModule_id();
-                        i.getDate();
-                        i.getTime();
+                        System.out.println("\nBooking confirmation:");
+                        System.out.println("\nStaff id: " + i.getStaff_id());
+                        System.out.println("Room number: " + i.getRoom_number());
+                        System.out.println("Module id: " + i.getModule_id());
+                        System.out.println("Date booked: " + i.getDate());
+                        System.out.println("Time booked: " + i.getTime() + "\n");
                     }
 
                     break;

@@ -3,6 +3,13 @@ package csc1035.project2;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * This is the entity declaration of the module_requirements class. It contains details on the
+ * module ID, the week the modules begin, how many lectures are in it, how many practicals are in
+ * it, and the respective lengths of a module and a practical
+ *
+ * @author Oscar
+ */
 @Entity(name = "module_requirements")
 public class ModuleRequirements {
 

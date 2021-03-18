@@ -4,6 +4,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The entity declaration for the class 'Modules'. It contains the String module ID, the
+ * String module name, the integer value of how many credits the module is worth and the integer
+ * for how many weeks the module goes on for
+ *
+ * @author oscar
+ */
 @Entity(name = "modules")
 public class Modules {
 

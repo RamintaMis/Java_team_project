@@ -3,6 +3,11 @@ package csc1035.project2;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * This class is responsible for making the composite ID out of the 'Takes' entity.
+ *
+ * @author Oscar
+ */
 public class TakesCompositeKey implements Serializable {
 
     private int sid;

@@ -5,13 +5,30 @@ import java.util.Scanner;
 import java.util.List;
 import java.time.LocalDate;
 
+/**
+ * This is the main function that contains the interface that the user will interact with.
+ * it contains several separate menu functions to ease readability
+ * @author Oscar
+ */
 public class MenuIO {
 
-
+    /**
+     * prints a string
+     * @param sentence an inputted string that the user wants outputted
+     */
     public static void Say(String sentence){
         System.out.println(sentence);
     }
 
+    /**
+     * a menu that gives the user access to separate parts of the room booking system,
+     * including: returning a list of rooms, reserving a room, cancelling a reservation,
+     * finding a free room at a given time, getting a booking confirmation, returning a room
+     * timetable and updating the details of a room.
+     * Upon the exit of this function, it returns to the main menu.
+     *
+     * @param reader a scanner inputted here to reduce the number of new scanners
+     */
     public static void roomMenu(Scanner reader){
 
         RoomBookingSys r = new RoomBookingSys();
@@ -70,8 +87,8 @@ public class MenuIO {
                         r_time = reader.nextInt();
                         reader.nextLine(); //remove leftover new line
 
-                                /*realistically no incident would be reported before this date
-                                so we may as well read any dates before such time as wrong */
+                        /*the time cannot exceed this value so we can keep this to say the value
+                        will be below it */
                     }while(r_time < 11);
                     LocalDate date = LocalDate.now();
                     while (!correct_choice) {
@@ -113,8 +130,8 @@ public class MenuIO {
                         c_time = reader.nextInt();
                         reader.nextLine(); //remove leftover new line
 
-                                /*realistically no incident would be reported before this date
-                                so we may as well read any dates before such time as wrong */
+                        /*the time cannot exceed this value so we can keep this to say the value
+                        will be below it */
                     }while(c_time < 11);
                     Say("Enter reservation date " +
                             "in the format YYYY-MM-DD: ");
@@ -140,8 +157,7 @@ public class MenuIO {
                         f_time = reader.nextInt();
                         reader.nextLine(); //remove leftover new line
 
-                                /*realistically no incident would be reported before this date
-                                so we may as well read any dates before such time as wrong */
+                        //the time cannot exceed this value so it must be below it
                     }while(f_time < 11);
 
                     Say("Enter duration: ");
@@ -230,6 +246,15 @@ public class MenuIO {
         }
     }
 
+    /**
+     * This function manages a menu containing all the things the user can access about the
+     * timetable system, such as: students on a module, staff that teach a module, module
+     * requirements, create a timetable, create a timetable under socially distanced conditions,
+     * produce a timetable for a student, produce a timetable for a staff member.
+     * Upon the ending of the function it returns to the main menu function
+     *
+     * @param reader a Scanner inputted to reduce the number of new Scanners
+     */
     public static void timetableMenu(Scanner reader){
 
         boolean timeExit = false;
@@ -301,6 +326,12 @@ public class MenuIO {
         }
     }
 
+    /**
+     * this is the main function that declares a scanner and creates a menu. The menu acts as
+     * a director to other menu functions as to avoid this function getting too full of clutter.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         //declare the scanner and the user's input as reader and choice
         Scanner reader = new Scanner(System.in);
@@ -324,7 +355,7 @@ public class MenuIO {
                     break;
 
                 case "2":
-
+                    timetableMenu(reader);
                     break;
 
                 case "3":

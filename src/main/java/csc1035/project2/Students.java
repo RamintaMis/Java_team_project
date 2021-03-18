@@ -4,6 +4,11 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * this is the entity declaration for a 'Student' class, containing the students name and ID
+ *
+ * @author oscar
+ */
 @Entity(name="students")
 public class Students {
 

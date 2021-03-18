@@ -3,7 +3,12 @@ package csc1035.project2;
 
 import javax.persistence.*;
 
-
+/**
+ * This is the entity declaration for the class 'teaches', containing the String Staff ID that
+ * belongs to a given teacher, and the String Module ID that the given Teacher takes.
+ *
+ * @author Oscar
+ */
 @Entity(name="teaches")
 @IdClass(TeachesCompositeKey.class)
 public class Teaches {

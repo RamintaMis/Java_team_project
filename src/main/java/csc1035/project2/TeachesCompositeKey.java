@@ -4,6 +4,11 @@ package csc1035.project2;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * This class is responsible for creating the composite key for the 'teaches' entity.
+ *
+ * @author oscar
+ */
 public class TeachesCompositeKey implements Serializable {
 
     private String staff_id;

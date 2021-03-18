@@ -2,6 +2,12 @@ package csc1035.project2;
 
 import javax.persistence.*;
 
+/**
+ * This is the entity declaration for the 'staff' class. It contains the String staff member's ID and
+ * the Strings of their first name and last name respectively.
+ *
+ * @author oscar
+ */
 @Entity(name="staff")
 public class Staff {
 

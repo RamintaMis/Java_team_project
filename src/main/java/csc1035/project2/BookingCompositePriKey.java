@@ -3,7 +3,11 @@ package csc1035.project2;
 import java.io.Serializable;
 import java.util.Objects;
 
-
+/**
+ * This class contains the class to compose the primary key for the booking entity.
+ *
+ * @author oscar
+ */
 public class BookingCompositePriKey implements Serializable {
 
     private String staff_id;

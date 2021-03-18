@@ -3,6 +3,12 @@ package csc1035.project2;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * This class contains the test data for the room booking system, which calls all the functions
+ * in the class using given values.
+ *
+ * @author oscar
+ */
 public class TestRoomBookSys {
 
     public static void main(String[] args) {

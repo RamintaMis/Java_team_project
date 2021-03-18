@@ -3,6 +3,15 @@ package csc1035.project2;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+/**
+ * the entity declaration for a 'Booking' class, containing the ID (composed of the Strings: the room number the
+ * booking takes place in, the module the room is being booked for, and the staff member that is booking
+ * the room), the date (stored as a Local Date), an integer of what time the booking takes place in (where
+ * '0' is 8:00 and '10' is 6:00), and a boolean value representing whether the room is booked under
+ * socially distanced conditions.
+ *
+ * @author Oscar
+ */
 @Entity(name = "booking")
 @IdClass(BookingCompositePriKey.class)
 public class Booking {

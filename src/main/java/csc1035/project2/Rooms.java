@@ -2,6 +2,13 @@ package csc1035.project2;
 
 import javax.persistence.*;
 
+/**
+ * This is the entity declaration for the class 'rooms', containing the String room number,
+ * the String type of room that it is, the integer value for what the room's maximum capacity is,
+ * and the integer value for what the room's maximum capacity is under socially distant conditions.
+ *
+ * @author oscar
+ */
 @Entity(name="rooms")
 public class Rooms {
 

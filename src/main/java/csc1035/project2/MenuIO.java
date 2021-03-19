@@ -352,15 +352,18 @@ public class MenuIO {
 
                 case "1":
                     roomMenu(reader);
+
                     break;
 
                 case "2":
                     timetableMenu(reader);
+
                     break;
 
                 case "3":
                     //exit while loop and halt program
                     exit = true;
+
                     break;
 
                 default:
